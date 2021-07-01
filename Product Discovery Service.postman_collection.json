@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "65bd7426-265d-4d42-b3e7-caa62c7ffd19",
+		"name": "Product Discovery Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Rapid Information Explorer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://product-discovery-service.herokuapp.com/rapidInformationExplorer?keyword=8GB",
+					"protocol": "https",
+					"host": [
+						"product-discovery-service",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rapidInformationExplorer"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "8GB"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. SPARQL Endpoint",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\nPREFIX owl: <http://www.w3.org/2002/07/owl#>\r\nPREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\r\nPREFIX dc: <http://purl.org/dc/elements/1.1/>\r\nPREFIX gr: <http://purl.org/goodrelations/v1#>\r\nPREFIX eeo: <http://rdf-dump/eeo/0.1/>\r\nPREFIX schema: <https://schema.org/>\r\nSELECT DISTINCT ?Subject ?Property ?Object  WHERE\r\n{ \r\n{ ?Subject ?Property ?Object. FILTER (REGEX(?Object ,\"i5\" )) } OPTIONAL\r\n{ ?Subject ?Property ?Object. FILTER (regex(?Property ,\"i5\" )) } OPTIONAL \r\n{ ?Subject ?Property ?Object. FILTER (regex(?Subject ,\"i5\")) } \r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://product-discovery-service.herokuapp.com/sparqlEndpoint",
+					"protocol": "https",
+					"host": [
+						"product-discovery-service",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"sparqlEndpoint"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Recommend Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://product-discovery-service.herokuapp.com/recommendProduct?Category=&Brand&RAM&OperatingSystem=NoOS&PriceInEuros&Quantity&Seller&CPU&GPU&ScreenSize&ScreenType&Storage",
+					"protocol": "https",
+					"host": [
+						"product-discovery-service",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"recommendProduct"
+					],
+					"query": [
+						{
+							"key": "Category",
+							"value": ""
+						},
+						{
+							"key": "Brand",
+							"value": null
+						},
+						{
+							"key": "RAM",
+							"value": null
+						},
+						{
+							"key": "OperatingSystem",
+							"value": "NoOS"
+						},
+						{
+							"key": "PriceInEuros",
+							"value": null
+						},
+						{
+							"key": "Quantity",
+							"value": null
+						},
+						{
+							"key": "Seller",
+							"value": null
+						},
+						{
+							"key": "CPU",
+							"value": null
+						},
+						{
+							"key": "GPU",
+							"value": null
+						},
+						{
+							"key": "ScreenSize",
+							"value": null
+						},
+						{
+							"key": "ScreenType",
+							"value": null
+						},
+						{
+							"key": "Storage",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Upload Seller's Product Catalog",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/vishlama/OneDrive - AMDOCS/Knowledge Representation/settings.xml"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://product-discovery-service.herokuapp.com/uploadProductCatalog",
+					"protocol": "https",
+					"host": [
+						"product-discovery-service",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"uploadProductCatalog"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
